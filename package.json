@@ -2,7 +2,7 @@
   "name": "asian-capitals-quiz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yourusername.github.io/asian-capitals-quiz",
+  "homepage": "https://szels.github.io/geoguess",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
