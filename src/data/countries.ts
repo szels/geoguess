@@ -3,7 +3,7 @@ export interface Country {
   capital: string;
 }
 
-export const asianCountries: Country[] = [
+export const countries: Country[] = [
   { name: "Afghanistan", capital: "Kabul" },
   { name: "Armenia", capital: "Yerevan" },
   { name: "Azerbaijan", capital: "Baku" },
@@ -38,10 +38,11 @@ export const asianCountries: Country[] = [
   { name: "Palestine", capital: "East Jerusalem" },
   { name: "Philippines", capital: "Manila" },
   { name: "Qatar", capital: "Doha" },
+  { name: "Russia", capital: "Moscow" },
   { name: "Saudi Arabia", capital: "Riyadh" },
   { name: "Singapore", capital: "Singapore" },
   { name: "South Korea", capital: "Seoul" },
-  { name: "Sri Lanka", capital: "Colombo" },
+  { name: "Sri Lanka", capital: "Sri Jayawardenepura Kotte" },
   { name: "Syria", capital: "Damascus" },
   { name: "Taiwan", capital: "Taipei" },
   { name: "Tajikistan", capital: "Dushanbe" },

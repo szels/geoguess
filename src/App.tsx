@@ -2,12 +2,12 @@ import React from 'react';
 import Quiz from './components/Quiz';
 import './App.css';
 
-const App: React.FC = () => {
+function App() {
   return (
     <div className="App">
       <Quiz />
     </div>
   );
-};
+}
 
-export default App; 
+export default App;

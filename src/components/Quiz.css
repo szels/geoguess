@@ -1,105 +1,69 @@
 .quiz-container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
   text-align: center;
-  font-family: 'Arial', sans-serif;
 }
 
-h1 {
-  color: #2c3e50;
-  margin-bottom: 2rem;
+.quiz-container h2 {
+  color: #333;
 }
 
-.score-display {
-  font-size: 1.2rem;
-  color: #34495e;
-  margin-bottom: 1.5rem;
+.quiz-container p {
+  margin: 10px 0;
 }
 
 .question-container {
-  background-color: #f8f9fa;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
+  margin: 20px 0;
 }
 
 .options-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .option-button {
-  background-color: white;
-  color: #2c3e50;
-  padding: 1rem;
-  border: 2px solid #3498db;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
   border-radius: 5px;
-  font-size: 1rem;
+  background-color: #f0f0f0;
   cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  text-align: left;
+  transition: background-color 0.3s;
+  color: #333;
 }
 
-.option-button:hover:not(:disabled) {
-  background-color: #3498db;
-  color: white;
-}
-
-.option-button:disabled {
-  cursor: default;
-  opacity: 0.8;
+.option-button:hover {
+  background-color: #e0e0e0;
 }
 
 .option-button.correct {
-  background-color: #2ecc71;
-  border-color: #2ecc71;
+  background-color: #4caf50;
   color: white;
 }
 
 .option-button.incorrect {
-  background-color: #e74c3c;
-  border-color: #e74c3c;
+  background-color: #f44336;
   color: white;
 }
 
 .feedback {
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border-radius: 5px;
+  margin-top: 10px;
   font-weight: bold;
 }
 
-.feedback.correct {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.feedback.incorrect {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.reset-button {
-  background-color: #2ecc71;
-  color: white;
-  padding: 1rem 2rem;
+button {
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
   border-radius: 5px;
-  font-size: 1.1rem;
+  background-color: #007bff;
+  color: white;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 1rem;
 }
 
-.reset-button:hover {
-  background-color: #27ae60;
+button:hover {
+  background-color: #0056b3;
 } 
