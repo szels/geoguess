@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/geoguess/static/css/main.f7722baa.css",
-    "main.js": "/geoguess/static/js/main.77805fb5.js",
+    "main.js": "/geoguess/static/js/main.0b2ecab1.js",
     "static/js/453.648b627e.chunk.js": "/geoguess/static/js/453.648b627e.chunk.js",
     "index.html": "/geoguess/index.html",
     "main.f7722baa.css.map": "/geoguess/static/css/main.f7722baa.css.map",
-    "main.77805fb5.js.map": "/geoguess/static/js/main.77805fb5.js.map",
+    "main.0b2ecab1.js.map": "/geoguess/static/js/main.0b2ecab1.js.map",
     "453.648b627e.chunk.js.map": "/geoguess/static/js/453.648b627e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f7722baa.css",
-    "static/js/main.77805fb5.js"
+    "static/js/main.0b2ecab1.js"
   ]
 }
