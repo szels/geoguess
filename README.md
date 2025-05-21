@@ -1,47 +1,52 @@
 # Asian Capitals Quiz
 
-An interactive quiz application to help kids learn the capitals of Asian countries. Built with React and TypeScript.
+A fun and interactive quiz application that tests your knowledge of Asian countries and their capitals. Built with React and TypeScript.
 
 ## Features
 
-- Interactive quiz interface
-- Immediate feedback on answers
+- Multiple choice questions
 - Score tracking
-- 10 questions per game
-- Comprehensive list of Asian countries and their capitals
-- Responsive design for all devices
+- Immediate feedback on answers
+- Clean and modern UI
+- Responsive design
 
 ## Getting Started
 
-1. Clone the repository
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/asian-capitals-quiz.git
+cd asian-capitals-quiz
+```
+
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
+
 3. Start the development server:
-   ```bash
-   npm start
-   ```
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm start
+```
 
-## Deployment to GitHub Pages
+The application will open in your default browser at `http://localhost:3000`.
 
-1. Update the `homepage` field in `package.json` with your GitHub Pages URL:
-   ```json
-   "homepage": "https://yourusername.github.io/asia-capitals-quiz"
-   ```
+## Deployment
 
-2. Deploy to GitHub Pages:
-   ```bash
-   npm run deploy
-   ```
+This project is deployed using GitHub Pages. The live version can be found at [https://yourusername.github.io/asian-capitals-quiz](https://yourusername.github.io/asian-capitals-quiz).
 
 ## Technologies Used
 
 - React
 - TypeScript
 - CSS3
-- GitHub Pages for hosting
+- Create React App
 
 ## Contributing
 
