@@ -5,12 +5,12 @@ import Quiz from './Quiz';
 describe('Quiz Component', () => {
   test('renders Quiz component', () => {
     render(<Quiz />);
-    expect(screen.getByText(/Asian Capitals Quiz/i)).toBeInTheDocument();
+    expect(screen.getByText(/Asiatische Hauptstädte Quiz/i)).toBeInTheDocument();
   });
 
   test('displays a question', () => {
     render(<Quiz />);
-    expect(screen.getByText(/What is the capital of/i)).toBeInTheDocument();
+    expect(screen.getByText(/Was ist die Hauptstadt von/i)).toBeInTheDocument();
   });
 
   test('renders options as buttons', () => {

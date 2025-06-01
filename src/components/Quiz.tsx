@@ -46,13 +46,13 @@ const Quiz: React.FC = () => {
     const isCorrect = selectedCapital === currentCountry?.capital;
     if (isCorrect) {
       setScore(prev => prev + 1);
-      setFeedback('Correct!');
+      setFeedback('Richtig!');
     } else {
-      setFeedback(`Incorrect. The correct answer is ${currentCountry?.capital}.`);
+      setFeedback(`Falsch. Die richtige Antwort ist ${currentCountry?.capital}.`);
     }
     setTotalQuestions(prev => prev + 1);
     setTimeout(() => {
-      if (totalQuestions + 1 >= 10) {
+      if (totalQuestions + 1 >= 20) {
         setGameOver(true);
       } else {
         startNewQuestion();
@@ -72,20 +72,20 @@ const Quiz: React.FC = () => {
   if (gameOver) {
     return (
       <div className="quiz-container">
-        <h2>Quiz Complete!</h2>
-        <p>Your score: {score} out of {totalQuestions}</p>
-        <button onClick={resetQuiz}>Restart Quiz</button>
+        <h2>Quiz beendet!</h2>
+        <p>Dein Ergebnis: {score} von {totalQuestions}</p>
+        <button onClick={resetQuiz}>Neu starten</button>
       </div>
     );
   }
 
   return (
     <div className="quiz-container">
-      <h2>Asian Capitals Quiz</h2>
-      <p>Score: {score} / {totalQuestions}</p>
+      <h2>Asiatische Hauptstädte Quiz</h2>
+      <p>Punktzahl: {score} / {totalQuestions}</p>
       {currentCountry && (
         <div className="question-container">
-          <h3>What is the capital of {currentCountry.name}?</h3>
+          <h3>Was ist die Hauptstadt von {currentCountry.name}?</h3>
           <div className="options-container">
             {options.map((capital, index) => (
               <button
