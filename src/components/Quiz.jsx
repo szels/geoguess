@@ -2,27 +2,33 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { countries } from '../data/countries';
 import './Quiz.css';
 
-const Quiz: React.FC = () => {
-  const [currentCountry, setCurrentCountry] = useState<{ name: string; capital: string } | null>(null);
-  const [options, setOptions] = useState<string[]>([]);
+const Quiz = () => {
+  const [currentCountry, setCurrentCountry] = useState(null);
+  const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
-  const [feedback, setFeedback] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState(null);
   const [gameOver, setGameOver] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [error, setError] = useState(null);
 
   const getRandomCountry = () => {
+    if (!countries || countries.length === 0) {
+      setError('Keine Länderdaten verfügbar');
+      return null;
+    }
     const randomIndex = Math.floor(Math.random() * countries.length);
     return countries[randomIndex];
   };
 
-  const getRandomCapitals = (excludeCapital: string, count: number): string[] => {
+  const getRandomCapitals = (excludeCapital, count) => {
+    if (!countries || countries.length === 0) return [];
     const filteredCountries = countries.filter(c => c.capital !== excludeCapital);
     const shuffled = [...filteredCountries].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).map(c => c.capital);
   };
 
-  const generateOptions = (correctCapital: string): string[] => {
+  const generateOptions = (correctCapital) => {
     const incorrectCapitals = getRandomCapitals(correctCapital, 3);
     const allOptions = [...incorrectCapitals, correctCapital];
     return allOptions.sort(() => 0.5 - Math.random());
@@ -30,6 +36,7 @@ const Quiz: React.FC = () => {
 
   const startNewQuestion = useCallback(() => {
     const country = getRandomCountry();
+    if (!country) return;
     setCurrentCountry(country);
     setOptions(generateOptions(country.capital));
     setFeedback(null);
@@ -40,19 +47,19 @@ const Quiz: React.FC = () => {
     startNewQuestion();
   }, [startNewQuestion]);
 
-  const handleAnswer = (selectedCapital: string) => {
-    if (selectedAnswer !== null) return; // Prevent multiple selections
+  const handleAnswer = (selectedCapital) => {
+    if (selectedAnswer !== null || !currentCountry) return; // Prevent multiple selections
     setSelectedAnswer(selectedCapital);
-    const isCorrect = selectedCapital === currentCountry?.capital;
+    const isCorrect = selectedCapital === currentCountry.capital;
     if (isCorrect) {
       setScore(prev => prev + 1);
-      setFeedback('Correct!');
+      setFeedback('Richtig!');
     } else {
-      setFeedback(`Incorrect. The correct answer is ${currentCountry?.capital}.`);
+      setFeedback(`Falsch. Die richtige Antwort ist ${currentCountry.capital}.`);
     }
     setTotalQuestions(prev => prev + 1);
     setTimeout(() => {
-      if (totalQuestions + 1 >= 10) {
+      if (totalQuestions + 1 >= 20) {
         setGameOver(true);
       } else {
         startNewQuestion();
@@ -66,26 +73,37 @@ const Quiz: React.FC = () => {
     setGameOver(false);
     setFeedback(null);
     setSelectedAnswer(null);
+    setError(null);
     startNewQuestion();
   };
+
+  if (error) {
+    return (
+      <div className="quiz-container">
+        <h2>Fehler</h2>
+        <p>{error}</p>
+        <button onClick={resetQuiz}>Erneut versuchen</button>
+      </div>
+    );
+  }
 
   if (gameOver) {
     return (
       <div className="quiz-container">
-        <h2>Quiz Complete!</h2>
-        <p>Your score: {score} out of {totalQuestions}</p>
-        <button onClick={resetQuiz}>Restart Quiz</button>
+        <h2>Quiz beendet!</h2>
+        <p>Dein Ergebnis: {score} von {totalQuestions}</p>
+        <button onClick={resetQuiz}>Neu starten</button>
       </div>
     );
   }
 
   return (
     <div className="quiz-container">
-      <h2>Asian Capitals Quiz</h2>
-      <p>Score: {score} / {totalQuestions}</p>
+      <h2>Asiatische Hauptstädte Quiz</h2>
+      <p>Punktzahl: {score} / {totalQuestions}</p>
       {currentCountry && (
         <div className="question-container">
-          <h3>What is the capital of {currentCountry.name}?</h3>
+          <h3>Was ist die Hauptstadt von {currentCountry.name}?</h3>
           <div className="options-container">
             {options.map((capital, index) => (
               <button
