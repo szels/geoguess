@@ -10,13 +10,19 @@ const Quiz: React.FC = () => {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const getRandomCountry = () => {
+    if (!countries || countries.length === 0) {
+      setError('Keine Länderdaten verfügbar');
+      return null;
+    }
     const randomIndex = Math.floor(Math.random() * countries.length);
     return countries[randomIndex];
   };
 
   const getRandomCapitals = (excludeCapital: string, count: number): string[] => {
+    if (!countries || countries.length === 0) return [];
     const filteredCountries = countries.filter(c => c.capital !== excludeCapital);
     const shuffled = [...filteredCountries].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count).map(c => c.capital);
@@ -30,6 +36,7 @@ const Quiz: React.FC = () => {
 
   const startNewQuestion = useCallback(() => {
     const country = getRandomCountry();
+    if (!country) return;
     setCurrentCountry(country);
     setOptions(generateOptions(country.capital));
     setFeedback(null);
@@ -41,14 +48,14 @@ const Quiz: React.FC = () => {
   }, [startNewQuestion]);
 
   const handleAnswer = (selectedCapital: string) => {
-    if (selectedAnswer !== null) return; // Prevent multiple selections
+    if (selectedAnswer !== null || !currentCountry) return; // Prevent multiple selections
     setSelectedAnswer(selectedCapital);
-    const isCorrect = selectedCapital === currentCountry?.capital;
+    const isCorrect = selectedCapital === currentCountry.capital;
     if (isCorrect) {
       setScore(prev => prev + 1);
       setFeedback('Richtig!');
     } else {
-      setFeedback(`Falsch. Die richtige Antwort ist ${currentCountry?.capital}.`);
+      setFeedback(`Falsch. Die richtige Antwort ist ${currentCountry.capital}.`);
     }
     setTotalQuestions(prev => prev + 1);
     setTimeout(() => {
@@ -66,8 +73,19 @@ const Quiz: React.FC = () => {
     setGameOver(false);
     setFeedback(null);
     setSelectedAnswer(null);
+    setError(null);
     startNewQuestion();
   };
+
+  if (error) {
+    return (
+      <div className="quiz-container">
+        <h2>Fehler</h2>
+        <p>{error}</p>
+        <button onClick={resetQuiz}>Erneut versuchen</button>
+      </div>
+    );
+  }
 
   if (gameOver) {
     return (
