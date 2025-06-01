@@ -28,11 +28,11 @@ const Quiz = () => {
     return shuffled.slice(0, count).map(c => c.capital);
   };
 
-  const generateOptions = (correctCapital) => {
+  const generateOptions = useCallback((correctCapital) => {
     const incorrectCapitals = getRandomCapitals(correctCapital, 3);
     const allOptions = [...incorrectCapitals, correctCapital];
     return allOptions.sort(() => 0.5 - Math.random());
-  };
+  }, []);
 
   const startNewQuestion = useCallback(() => {
     const country = getRandomCountry();
@@ -41,7 +41,7 @@ const Quiz = () => {
     setOptions(generateOptions(country.capital));
     setFeedback(null);
     setSelectedAnswer(null);
-  }, []);
+  }, [generateOptions]);
 
   useEffect(() => {
     startNewQuestion();
