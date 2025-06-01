@@ -9,8 +9,13 @@ const Quiz = () => {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+<<<<<<<< HEAD:src/components/Quiz.jsx
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [error, setError] = useState(null);
+========
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+>>>>>>>> main:src/components/Quiz.tsx
 
   const getRandomCountry = () => {
     if (!countries || countries.length === 0) {
@@ -21,7 +26,11 @@ const Quiz = () => {
     return countries[randomIndex];
   };
 
+<<<<<<<< HEAD:src/components/Quiz.jsx
   const getRandomCapitals = (excludeCapital, count) => {
+========
+  const getRandomCapitals = (excludeCapital: string, count: number): string[] => {
+>>>>>>>> main:src/components/Quiz.tsx
     if (!countries || countries.length === 0) return [];
     const filteredCountries = countries.filter(c => c.capital !== excludeCapital);
     const shuffled = [...filteredCountries].sort(() => 0.5 - Math.random());
@@ -47,7 +56,11 @@ const Quiz = () => {
     startNewQuestion();
   }, [startNewQuestion]);
 
+<<<<<<<< HEAD:src/components/Quiz.jsx
   const handleAnswer = (selectedCapital) => {
+========
+  const handleAnswer = (selectedCapital: string) => {
+>>>>>>>> main:src/components/Quiz.tsx
     if (selectedAnswer !== null || !currentCountry) return; // Prevent multiple selections
     setSelectedAnswer(selectedCapital);
     const isCorrect = selectedCapital === currentCountry.capital;
